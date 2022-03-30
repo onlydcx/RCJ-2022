@@ -1,0 +1,94 @@
+
+(rules PCB CamBoard
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (eu.mihosoft.freerouting.autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 900)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.0)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.0)
+    )
+  )
+  (rule
+    (width 250.0)
+    (clear 200.2)
+    (clear 125.0 (type smd_to_turn_gap))
+    (clear 50.0 (type smd_smd))
+  )
+  (padstack "Via[0-1]_800:400_um"
+    (shape
+      (circle F.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 800.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_800:400_um" "Via[0-1]_800:400_um" default
+  )
+  (via 
+    "Via[0-1]_800:400_um-kicad_default" "Via[0-1]_800:400_um" "kicad_default"
+  )
+  (via_rule
+    default "Via[0-1]_800:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_800:400_um-kicad_default"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class class1
+    GND 5V 3.3V 7.4V SDA SCL "Net-(J4-Pad1)" "Net-(J4-Pad2)"
+    "Net-(J4-Pad3)" "Net-(J4-Pad4)" "Net-(J6-Pad2)" "HC-SR04-Front" "Net-(J7-Pad2)" "HC-SR04-Left" "HC-SR04-Back" "Net-(J8-Pad2)"
+    "HC-SR04-Right" "Net-(J9-Pad2)" "M1_PWM" "M1_DIR" "M2_PWM" "M2_DIR" "M4_DIR" "M4_PWM"
+    "M3_DIR" "M3_PWM" "Net-(J12-Pad1)" "Net-(J12-Pad2)" A0 A1 A2 A3
+    A9 A8 A7 A6 A12 "Net-(J15-Pad4)" LED2 LED1
+    "UI_1" "UI_2" "UI_3" "UI_4" "Net-(U2-Pad1)" "Net-(U2-Pad2)" RX TX
+    "Net-(U2-Pad5)" "Net-(U2-Pad6)" "Net-(U2-Pad7)" "Net-(U2-Pad8)" "Net-(U2-Pad11)" "Net-(U2-Pad12)" "Net-(U2-Pad13)" "Net-(U2-Pad14)"
+    "Net-(U2-Pad15)" "Net-(U2-Pad16)" "Net-(U3-Pad18)" "Net-(U3-Pad19)" "Net-(U3-Pad20)" "Net-(U3-Pad16)" "Net-(U3-Pad15)" "Net-(U3-Pad14)"
+    "Net-(U3-Pad31)" "Net-(U3-Pad34)" "Net-(U3-Pad13)" "Net-(U3-Pad12)" "Net-(U3-Pad3)" "Net-(U3-Pad2)" "Net-(U3-Pad35)" "Net-(U3-Pad36)"
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 500.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)
